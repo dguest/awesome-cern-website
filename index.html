@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>How to Make an Awesome CERN Website</title>
+  </head>
+  <body>
+    <h1>How to Make an Awesome CERN Website</h1>
+    <p>Most of the internet is too complicated. Complicated things are hard to use and break for weird reasons. This explains how to use the simple part.</p>
+    <p>I'm going to assume a few things about you:</p>
+    <ol>
+      <li>You have a CERN account and access to lxplus</li>
+      <li>You have some data there that you want to share</li>
+      <li>You don't want to spend a lot of time on this: ideally minimal setup, and almost zero maintenance from then on <a href="#note-1" id="br-1">[1]</a>.
+    </ol>
+    <p>Fortunately most of the steps involved only have to be done once per user: creating additional websites or sharing additional data is much simpler after the initial setup.</p>
+    <h2>How to Do</h2>
+    <p>The simplified procedure:</p>
+    <ol>
+      <li><b>Create your www directory</b> using cernbox</li>
+      <li><b>Create the website</b> based on an EOS folder</li>
+      <li><b>Move files</b> into the EOS folder</li>
+      <li><b>Set access</b> appropriately</li>
+      <li>Set up <b><code>acron</code> jobs</b> to update the site
+    </ol>
+    <h3>Create your www directory</h3>
+    <p>You only have to do this once, <i>ever</i>. After that you can make all the websites you want. This should be the only part where we have to touch CERNBox. Fortunately it's quick:</p>
+    <ol>
+      <li>Go to <a href="https://cernbox.cern.ch">CERNBox</a>
+      <li>Click the little "+" sign somewhere in center top of the screen</li>
+      <ol>
+        <li>Select "new folder"</li>
+        <li>Name the new folder <code>www</code></li>
+      </ol>
+      <li>Click the share icon next to your new folder</li>
+      <li>Under "users and groups", enter <code>a:wwweos</code>. It should allow you to select an entry by that name from a drop down</li>
+    </ol>
+    <p>That's it! You'll never need to touch CERNBox again!</p>
+    <h3 id="create">Create the Website</h3>
+    <p>Now we need to ask CERN IT to publish this page:
+      <ol>
+        <li>Go to <a href="https://webservices.web.cern.ch/webservices/Services/CreateNewSite/Default.aspx">the CERN webservices page to request a website.</a></li>
+        <li>Under "Site Category:" choose "official site" <a href="#note-2" id="br-2">[2]</a>.</li>
+        <li id="make-site">Choose a name. If you just want to share things something like <code>dguest-public</code> should be fine, where <code>dguest</code> should be changed to your username.</li>
+        <li>Enter something not-too-suspicious for the description, e.g. "Dan's site for collaborating with colleagues".</li>
+        <li>Click "EOS Folder" and set the path to something like<pre>/eos/home-d/dguest/www/public/</pre> where you need to replace <code>d/dguest</code> to match your username and the path after <code>/www/</code> to point to your specific project. Here I'm calling our project <code>public</code>.</li>
+        <li>Agree to the CERN computing rules, and click "Create new website"</li>
+      </ol>
+    <p>Now you have to wait for CERN IT to create the site. It usually takes less than a day.</p>
+    <h3>Move files</h3>
+    <p>This step should be relatively obvious: go to <code>lxplus</code> and move some files into the directory. To make sure things work create a file called <code>test.html</code> <a href="#note-3" id="br-3">[3]</a> which just contains the text <div>Hello Friend!</div>.</p>
+    <p>Now it's time to test this thing out! Go to <pre>https://SITENAME.web.cern.ch/hello.html</pre> where you've replaced <code>SITENAME</code> with <a href="#make-site"> the name you chose above</a></p>
+    <p>Once you've verified that it works, you can move whatever you want there! In principle you're done now, but you can read on if you want to learn a few neat tricks</p>
+    <h3>Set Access</h3>
+    <p>Sometimes it's nice to be able to share a whole hierarchy of files. This is really easy: just go to the top level directory in your project run<pre>echo "Options +Indexes" > .htaccess</pre> and bingo, you have an index page auto generated for you!</p>
+    <p>There are also ways to add more complicated access rights. I'll work on these.</p>
+    <h3>Update with cron jobs</h3>
+    <p>Really super cool</p>
+    <h2>Notes</h2>
+    <p id="note-1"><a href="#br-1">[1]</a> The easiest thing is to just point your colleagues to a directory on AFS or EOS. Please don't do this. When I'm reading your email I don't want to have to log into lxplus and either scp a file or figure out some painfully slow xwindow forwarding just to view a file. It takes you three seconds to put that file on the web, don't make everyone who reads your email spend 20 retrieving it.</p>
+    <p id="note-2"><a href="#br-2">[2]</a>You can also create a "personal" website, but you only get one of these. The overhead for creating an official site is very small, and and given that you're probably creating this site to collaborate with your colleagues it easily justified by via official rules.</p>
+    <p id="note-3"><a href="#br=3">[3]</a>You can also create a top level <code>index.html</code> entry, but this will interfere with the indexing that we want to add in later.</p>
+  </body>
+</html>
+
