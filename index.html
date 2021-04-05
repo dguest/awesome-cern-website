@@ -17,7 +17,7 @@
     <ol>
       <li><b>Create your www directory</b> using cernbox</li>
       <li><b>Create the website</b> based on an EOS folder</li>
-      <li><b>Move files</b> into the EOS folder</li>
+      <li><b>Share files</b> in the EOS folder</li>
       <li><b>Set access</b> appropriately</li>
       <li>Set up <b><code>acron</code> jobs</b> to update the site
     </ol>
@@ -45,10 +45,9 @@
         <li>Agree to the CERN computing rules, and click "Create new website"</li>
       </ol>
     <p>Now you have to wait for CERN IT to create the site. It usually takes less than a day.</p>
-    <h3>Move files</h3>
-    <p>This step should be relatively obvious: go to <code>lxplus</code> and move some files into the directory. To make sure things work create a file called <code>test.html</code> <a href="#note-3" id="br-3">[3]</a> which just contains the text <div>Hello Friend!</div>.</p>
-    <p>Now it's time to test this thing out! Go to <pre>https://SITENAME.web.cern.ch/hello.html</pre> where you've replaced <code>SITENAME</code> with <a href="#make-site"> the name you chose above</a></p>
-    <p>Once you've verified that it works, you can move whatever you want there! In principle you're done now, but you can read on if you want to learn a few neat tricks</p>
+    <h3>Share files</h3>
+    <p>To make sure things work create a file called <code>test.html</code> <a href="#note-3" id="br-3">[3]</a> which just contains the text <code>Hello Friend!</code>. Now it's time to test this thing out! Go to <pre>https://SITENAME.web.cern.ch/hello.html</pre> where you've replaced <code>SITENAME</code> with <a href="#make-site"> the name you chose above</a>. It should show whatever text you entered.</p>
+    <p>Once you've verified that it works, you can move whatever you want there, including whole directory trees. In principle you're done now, but you can read on if you want to learn a few neat tricks</p>
     <h3>Set Access</h3>
     <p>Sometimes it's nice to be able to share a whole hierarchy of files. This is really easy: just go to the top level directory in your project run<pre>echo "Options +Indexes" > .htaccess</pre> and bingo, you have an index page auto generated for you!</p>
     <p>There are also ways to add more complicated access rights. I'll work on these.</p>
